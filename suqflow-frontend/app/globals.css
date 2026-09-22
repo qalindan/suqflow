@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #131313;
+  --foreground: #ffffff;
+  --sidebar: #131313;
+  --sidebar-border: #44493a;
+  --card: #201f1f;
+  --card-border: rgba(68, 73, 58, 0.3);
+  --primary: #4d7019;
+  --primary-light: #4d7019;
+  --primary-lighter: #c8f28c;
+  --muted: #8e9382;
+  --dark-muted: #666569;
+  --surface: #131313;
+  --shift-muted: #c4c9b6;
+  --profile-name: #e5e2e1;
+  --alert-border: rgba(239, 68, 68, 0.3);
+  --alert-text: #ffb4ab;
+  --status-dot: #4d7019;
+  --date-border: #44493a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-lighter: var(--primary-lighter);
+  --color-muted: var(--muted);
+  --color-dark-muted: var(--dark-muted);
+  --color-surface: var(--surface);
+  --color-shift-muted: var(--shift-muted);
+  --color-profile-name: var(--profile-name);
+  --color-alert-border: var(--alert-border);
+  --color-alert-text: var(--alert-text);
+  --color-status-dot: var(--status-dot);
+  --color-date-border: var(--date-border);
+  --font-sans: var(--font-inter);
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+/* Fix browser autofill overriding dark input backgrounds */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #131313 inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
