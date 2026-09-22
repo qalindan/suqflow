@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="588.115" height="356.159" viewBox="0 0 588.115 356.159" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mock Chart using SVG">
+<path id="Vector" d="M4.39257 356.159V266.459C43.0146 246.526 81.6366 256.492 120.259 296.359C158.881 336.226 197.503 306.326 236.125 206.659C274.747 106.992 313.369 116.959 351.991 236.559C390.613 356.159 429.235 326.259 467.857 146.859C506.479 -32.5409 545.101 -42.5075 583.723 116.959V356.159H4.39257" fill="url(#paint0_linear_0_4)"/>
+<path id="Vector_2" d="M4.39257 266.459C43.0146 246.526 81.6366 256.492 120.259 296.359C158.881 336.226 197.503 306.326 236.125 206.659C274.747 106.992 313.369 116.959 351.991 236.559C390.613 356.159 429.235 326.259 467.857 146.859C506.479 -32.5409 545.101 -42.5075 583.723 116.959" stroke="#4D7019" stroke-width="8.7833" stroke-linecap="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_4" x1="4.39257" y1="4.39444" x2="4.39257" y2="356.159" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4D7019" stop-opacity="0.3"/>
+<stop offset="1" stop-color="#4D7019" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
