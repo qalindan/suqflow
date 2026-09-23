@@ -1,0 +1,122 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  OWNER
+  CASHIER
+}
+
+enum PaymentMethod {
+  CASH
+  LIQ
+}
+
+model User {
+  id            String         @id @default(uuid())
+  full_name     String
+  pin_code      String?
+  email         String?        @unique
+  password_hash String?
+  role          Role           @default(CASHIER)
+  transactions  Transaction[]
+  expenses      Expense[]
+  loginAttempts LoginAttempt[]
+}
+
+model Product {
+  id               String            @id @default(uuid())
+  name             String            @unique
+  category         String
+  uom              String
+  wholesale_cost   Float
+  retail_price     Float
+  current_stock    Float
+  is_active        Boolean           @default(true)
+  transactionItems TransactionItem[]
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String @unique
+}
+
+model Customer {
+  id           String        @id @default(uuid())
+  name         String
+  phone        String
+  debt_balance Float         @default(0.0)
+  transactions Transaction[]
+}
+
+model Transaction {
+  id             String            @id @default(uuid())
+  total_amount   Float
+  payment_method PaymentMethod
+  created_at     DateTime          @default(now())
+
+  // Relations
+  user_id     String
+  user        User              @relation(fields: [user_id], references: [id])
+  customer_id String?
+  customer    Customer?         @relation(fields: [customer_id], references: [id])
+  items       TransactionItem[]
+  work_session_id String?
+  work_session    WorkSession?  @relation(fields: [work_session_id], references: [id])
+}
+
+model TransactionItem {
+  id             String      @id @default(uuid())
+  quantity       Float
+  unit_price     Float
+  subtotal       Float
+  
+  // Relations
+  transaction_id String
+  transaction    Transaction @relation(fields: [transaction_id], references: [id], onDelete: Cascade)
+  product_id     String
+  product        Product     @relation(fields: [product_id], references: [id], onDelete: Restrict)
+}
+
+model Expense {
+  id         String   @id @default(uuid())
+  title      String
+  amount     Float
+  category   String
+  created_at DateTime @default(now())
+  
+  // Relations
+  user_id    String
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Restrict)
+  work_session_id String?
+  work_session    WorkSession?  @relation(fields: [work_session_id], references: [id])
+}
+
+model LoginAttempt {
+  id         String   @id @default(uuid())
+  success    Boolean
+  created_at DateTime @default(now())
+  
+  // Relations
+  user_id    String
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model WorkSession {
+  id              String        @id @default(uuid())
+  cashier_id      String    
+  login_time      DateTime      @default(now())
+  logout_time     DateTime?
+  opening_balance Float         @default(0.0)
+  current_balance Float         @default(0.0)
+  
+  // Relations
+  transactions    Transaction[]
+  expenses        Expense[]
+}
